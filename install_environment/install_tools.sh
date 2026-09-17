@@ -10,7 +10,7 @@
 #   ./install_tools.sh                    # core env only
 #   ./install_tools.sh --optional         # core + optional env
 #   ./install_tools.sh --optional --dbs   # also download databases (~15 GB)
-#   ./install_tools.sh --dbdir /scratch/omar/dbs --optional --dbs
+#   ./install_tools.sh --dbdir /scratch/username/dbs --optional --dbs
 #   ./install_tools.sh --force            # rebuild environments
 #   ./install_tools.sh --verify-only      # just check what works
 #
