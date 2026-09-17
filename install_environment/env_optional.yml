@@ -1,0 +1,39 @@
+# Optional environment: the supporting analyses (points 1, 3, 9, 10).
+# Kept separate because several of these have heavy or conflicting
+# dependency trees and you do not want them breaking the core env.
+#   mamba env create -f env_optional.yml
+#   conda activate ismobile_extra
+#
+# Databases are NOT bundled. After creating the env, run:
+#   genomad download-database .
+#   defense-finder update
+#   padloc --db-update
+#   checkv download_database .        # required by virsorter2 workflows
+name: ismobile_extra
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.9
+  # --- alternative / complementary IS detection ---
+  - digis              # better recall on degenerate, decayed copies
+  - panisa             # IS insertions from short reads (BAM input)
+  - ismapper           # IS insertions from reads against a reference
+  # --- read mapping, needed by panISa / ISMapper ---
+  - bwa-mem2
+  - samtools
+  - minimap2
+  # --- MGE context: is the IS expansion plasmid or phage borne? ---
+  - genomad
+  - mob_suite
+  - virsorter=2
+  - checkv
+  # --- defense systems: the main alternative explanation for high HGT ---
+  - defense-finder
+  - padloc
+  - padloc-db
+  # --- long-read validation panel ---
+  - flye
+  - medaka
+  - bandage

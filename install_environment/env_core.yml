@@ -1,0 +1,32 @@
+# Core environment: everything the four scripts actually call.
+#   mamba env create -f env_core.yml
+#   conda activate ismobile
+#
+# Python is pinned to 3.9 because ete3 (used for the parsimony gain
+# counting in script 04) breaks on 3.11+. If you would rather not pin,
+# drop ete3 and do that step in R with phangorn instead.
+name: ismobile
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - python=3.9
+  # --- IS annotation (script 01) ---
+  - isescan            # pulls in hmmer, fraggenescan, blast as deps
+  - blast              # makeblastdb / blastn, used directly in 01 and 03
+  - seqkit             # convenience for fasta handling
+  # --- python libraries (scripts 01, 03, 04) ---
+  - pandas
+  - numpy
+  - scipy
+  - biopython
+  - ete3               # parsimony ancestral states in script 04
+  # --- R stack (script 02) ---
+  - r-base>=4.2
+  - r-data.table
+  - r-mass
+  - r-ape
+  - r-phytools         # phylANOVA
+  - r-ggplot2
+  - r-phangorn         # optional: R alternative to ete3 for script 04C
